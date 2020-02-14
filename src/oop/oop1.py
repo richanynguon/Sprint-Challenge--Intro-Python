@@ -23,3 +23,6 @@ class Vehicle:
 
 class GroundVehicle(Vehicle):
   pass
+
+class Car(GroundVehicle):
+  pass
