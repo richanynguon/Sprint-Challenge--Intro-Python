@@ -35,4 +35,5 @@ vehicles = [
 
 # Go through the vehicles list and print the result of calling drive() on each.
 
-# TODO
+sounds = [i.drive() for i in vehicles]
+print(sounds)
