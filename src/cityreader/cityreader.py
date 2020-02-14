@@ -41,8 +41,8 @@ def cityreader(cities=[]):
 cityreader(cities)
 
 # Print the list of cities (name, lat, lon), 1 record per line.
-for c in cities:
-    print(c)
+# for c in cities:
+#     print(c)
 
 # STRETCH GOAL!
 #
@@ -76,48 +76,20 @@ for c in cities:
 # TODO Get latitude and longitude values from the user
 
 
-def cityreader_stretch(cities=[]):
-    # within will hold the cities that fall within the specified region
-    print("Enter location points to find all cities between those regions press q to quit anytime")
-    while True:   
-      input_one = input("Enter first location point lat1,lon1:  ").split(",")
-      if input_one[0].upper() == "Q":
-        break
-      input_two = input("Enter second location point lat2,lon2:  ").split(',')
-      if input_two[0].upper() == "Q":
-        break
- 
-
-      if len(input_one) == 2 and len(input_two) == 2:
-         
-        lat1 = input_one[0]
-        lat2 = input_two[0]
-        lon1 = input_one[1]
-        lon2 = input_two[1]
-
-        within = []
-        try:
-            lat1 = float(lat1)
-            lon1 = float(lon1)
-            lat2 = float(lat2)
-            lon2 = float(lon2)
-        except:
-            print("Please enter lat,lon as such: 40.7774,-111.9301")
-            cityreader_stretch(cities)
-        for city in cities:
-            if min(lat1, lat2) <= city.lat <= max(lat1, lat2) and min(lon1, lon2) <= city.lon <= max(lon1, lon2):
-                within.append(city)
-
-        # TODO Ensure that the lat and lon valuse are all floats
-        # Go through each city and check to see if it falls within
-        # the specified coordinates.
-        print("All cities within the ranges of these coordinates")
-        for city in within:
-            print(f"{city.name}: ({city.lat}, {city.lon})")
-        break
-      else:
-         print("Please enter lat,lon as such: 40.7774,-111.9301")
-      
+input_one = input("Enter first location point lat1,lon1:  ").split(",")
+input_two = input(
+    "Enter second location point lat2,lon2:  ").split(',')
 
 
-cityreader_stretch(cities)
+def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
+    within = []
+
+    for city in cities:
+        if min(lat1, lat2) <= city.lat <= max(lat1, lat2):
+            if  min(lon1, lon2) <= city.lon <= max(lon1, lon2):
+                within.append(city) 
+
+    return within
+
+
+cityreader_stretch(float(input_one[0]), float(input_one[1]), float(input_two[0]), float(input_two[1]),  cities)
